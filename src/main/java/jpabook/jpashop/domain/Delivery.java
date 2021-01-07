@@ -12,7 +12,8 @@ import static javax.persistence.FetchType.*;
 @Setter
 public class Delivery {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "delivery_id")
     private Long id;
 
@@ -22,8 +23,8 @@ public class Delivery {
     @Embedded
     private Address address;
 
-    @Enumerated(EnumType.STRING)
     // enum일 때는, @Enumerated를 반드시 추가
     // 웬만하면 형 타입은 String으로
+    @Enumerated(EnumType.STRING)
     private DeliveryStatus status; //READY, COMP
 }

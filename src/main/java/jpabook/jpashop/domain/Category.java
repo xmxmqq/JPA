@@ -21,10 +21,13 @@ public class Category {
 
     private String name;
 
-    @ManyToMany // 지양해야 할 방법
+    // 지양해야 할 다대다
+    // 한 번 생성되면 필드를 추가하는 것이 블가능하기 때문
+    @ManyToMany
     @JoinTable(name = "category_item",
         joinColumns = @JoinColumn(name = "category_id"),
         inverseJoinColumns = @JoinColumn(name = "item_id"))  // 중간 테이블 매핑
+
     private List<Item> items = new ArrayList<>();
 
     @ManyToOne(fetch = LAZY)
