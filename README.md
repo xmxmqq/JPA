@@ -1,7 +1,5 @@
- jpashop
+ jpashop __실전! 스프링 부트와 JPA 활용 예제 프로젝트__
 =========
-
-__실전! 스프링 부트와 JPA 활용 예제 프로젝트__       
 
 __Java Persistence API(JPA)__ 는 객체들을 관계형 데이터베이스(RDB)에 맵핑할 수 있게 해주는 표준 기술입니다. 
 spring-boot-starter-data-jpa 의존성을 이용해 쉽게 할 수 있습니다. 
