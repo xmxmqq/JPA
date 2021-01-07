@@ -22,6 +22,8 @@ public class Delivery {
     @Embedded
     private Address address;
 
-    @Enumerated(EnumType.STRING) // 타입은 반드시 String으로!
+    @Enumerated(EnumType.STRING)
+    // enum일 때는, @Enumerated를 반드시 추가
+    // 웬만하면 형 타입은 String으로
     private DeliveryStatus status; //READY, COMP
 }

@@ -16,7 +16,7 @@ public class Member {
     @Id
     @GeneratedValue
     @Column(name = "member_id")
-    private Long id;
+    private Long id; // 엔티티를 생성하고 JPA를 통해 DB에 저장하는 시점에 값이 설정, 그래서 null을 유지할 수 있는 상태가 필요함
 
     @NotEmpty
     private String name;

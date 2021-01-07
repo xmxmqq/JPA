@@ -18,7 +18,7 @@ public class OrderItem {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "item_id")
-    private Item item;
+    private Item item; // OrderItem은 하나의 Item을 가짐, Item은 많은 OrderItem을 가짐
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
