@@ -21,7 +21,7 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id") // FK
     private Member member;
 
@@ -31,8 +31,8 @@ public class Order {
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     // 1:1 관계에서는 FK를 두는 곳을 선택할 수 있음
     // 주로 많이 이용하는 테이블에 FK를 둠
-    // 여기서는 Order이 많이 이용될 것 같으니
-    @JoinColumn(name = "delivery_id") // 주로 Order에서 Delivery를 조회하기 때문에, 연관관계의 주인(FK와 가까운 쪽)을 Order로 둔다.
+    // 주로 Order에서 Delivery를 조회하기 때문에, 연관관계의 주인(FK와 가까운 쪽)을 Order로 둔다.
+    @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
     // 주문시간

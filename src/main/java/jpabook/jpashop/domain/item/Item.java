@@ -24,6 +24,7 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
+    // 다대다 관계가 가능한 객체와 달리 DB는 불가능하기 때문에 중간 연결 테이블이 필요
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<Category>();
 }
