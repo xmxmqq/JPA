@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = true) // 조회 성능 최적화
 @RequiredArgsConstructor // final이 있는 필드만 가지고 생성자를 만들어 주는 것
 public class MemberService {
 
