@@ -14,10 +14,8 @@ public class HomeController {
     // Logger log = LoggerFactory.getLogger(getClass());
 
     @RequestMapping("/")
-    public String home {
+    public String home() {
         log.info("home controller");
         return "home";
     }
-
-
 }
