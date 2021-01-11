@@ -11,6 +11,13 @@ import jpabook.jpashop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true) // 조회성능 최적
@@ -19,6 +26,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final MemberRepository memberRepository;
     private final ItemRepository itemRepository;
+    private final EntityManager em;
 
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
@@ -38,6 +46,7 @@ public class OrderService {
 
         // 주문 생성
         Order order = Order.createOrder(member, delivery, orderItem);
+//        Order order = Order.createOrder(member, delivery, orderItem);
 
         // 주문 저장
         // Cascade 옵션 때문에 저장을 한 번만 해도 된다.
@@ -47,6 +56,33 @@ public class OrderService {
         orderRepository.save(order);
         return order.getId();
     }
+
+//    public List<Order> findByCriteria(OrderSearch orderSearch) {
+//
+//        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//        CriteriaQuery<Order> criteriaBuilderQuery = criteriaBuilder.createQuery(Order.class);
+//        Root<Order> orderRoot = criteriaBuilderQuery.from(Order.class);
+//        Join<Object, Object> memberJoin = orderRoot.join("member", JoinType.INNER);
+//
+//        // 여기서 동적 쿼리에 대한 커넥션 조합을 깔끔하게 만들 수 있다.
+//        List<Predicate> criteria = new ArrayList<>();
+//
+//        // 주문 상태 검색
+//        if (orderSearch.getOrderStatus() != null) {
+//            Predicate status = criteriaBuilder.equal(orderRoot.get("status"), orderSearch.getOrderStatus());
+//            criteria.add(status);
+//        }
+//
+//        // 회원 이름 검색
+//        if (StringUtils.hasText(orderSearch.getMemberName())) {
+//            Predicate name = criteriaBuilder.like(memberJoin.get("name"), "%" + orderSearch.getMemberName() + "%");
+//            criteria.add(name);
+//        }
+//
+//        criteriaBuilderQuery.where(criteriaBuilder.and(criteria.toArray(new Predicate[criteria.size()])));
+//        TypedQuery<Order> query = em.createQuery(criteriaBuilderQuery).setMaxResults(1000);
+//        return query.getResultList();
+//    }
 
 
 }
