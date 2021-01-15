@@ -2,6 +2,7 @@ package jpabook.jpashop.service;
 
 import com.sun.xml.txw2.IllegalSignatureException;
 import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

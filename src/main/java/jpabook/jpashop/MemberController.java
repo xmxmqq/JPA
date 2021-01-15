@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -40,5 +41,16 @@ public class MemberController {
 
         memberService.join(member);
         return "redirect:/";
+    }
+
+    @GetMapping("/members")
+    public String list(Model model) {
+
+        // MemberForm을 만들어야 하는 이유는 Entity 객체를 순수하기 유지하기 위해서이다.
+        // 실무에서는 DTO를 이용해서 정확히 필요한 부분만 반환하는 것이 좋다.
+        List<Member> memberList = MemberService.findMembers();
+        model.addAttribute("memberList", memberList);
+
+        return "members/memberList";
     }
 }
